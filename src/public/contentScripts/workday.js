@@ -123,6 +123,13 @@ async function workDayAutofill(res) {
         //no element found
         delete wrkDayFields[curStage][jobParam];
       }
+      // Click Continue button to proceed to the next stage
+      let continueBtn = document.querySelector('button[data-automation-id="continueBtn"], button[data-automation-id="continueButton"]') ||
+                        document.querySelector('button[data-automation-label="Continue"]') ||
+                        Array.from(document.querySelectorAll('button')).find(btn => btn.textContent.trim().toLowerCase().includes('continue'));
+      if (continueBtn) {
+        continueBtn.click();
+      }
       curInstanceCompleted = true;
     }
   });
